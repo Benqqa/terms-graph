@@ -7,6 +7,13 @@ RUN apt-get update && apt-get install -y \
     npm \
     && rm -rf /var/lib/apt/lists/*
 
+COPY web_service/package*.json /app/web_service/
+
+WORKDIR /app/web_service
+RUN npm install
+
+WORKDIR /app
+
 COPY protobufs/ /app/protobufs/
 COPY web_service/ /app/web_service/
 COPY requirements.txt /app/
@@ -19,8 +26,6 @@ RUN python -m grpc_tools.protoc -I ./protobufs \
     ./protobufs/dictionary.proto
 
 WORKDIR /app/web_service
-
-RUN npm install
 
 EXPOSE 5000
 
