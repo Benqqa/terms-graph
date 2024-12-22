@@ -53,6 +53,8 @@ lab8-web-1         "python web_service.…"    web                running       
 - Перейдите на главную страницу
 - Вы увидите список всех терминов с их определениями
 - Термины отсортированы по алфавиту
+<img width="1716" alt="Screenshot 2024-12-22 at 14 48 25" src="https://github.com/user-attachments/assets/fdf40fd9-eb86-4325-a24c-36e4edbd1c84" />
+
 
 #### Добавление нового термина
 1. Нажмите кнопку "Добавить термин"
@@ -62,12 +64,16 @@ lab8-web-1         "python web_service.…"    web                running       
    - Источник (опционально)
    - Связанные термины (опционально)
 3. Нажмите "Создать"
+<img width="1716" alt="Screenshot 2024-12-22 at 14 48 40" src="https://github.com/user-attachments/assets/07baaeae-fa48-460b-accf-522667a94538" />
+
 
 #### Редактирование термина
 1. Найдите нужный термин в списке
 2. Нажмите кнопку редактирования (иконка карандаша)
 3. Внесите изменения
 4. Нажмите "Сохранить"
+<img width="1716" alt="Screenshot 2024-12-22 at 14 48 31" src="https://github.com/user-attachments/assets/aed5e7eb-4111-4aaf-bad4-21828bcd4c23" />
+
 
 #### Удаление термина
 1. Найдите нужный термин в списке
@@ -84,6 +90,8 @@ lab8-web-1         "python web_service.…"    web                running       
    - Перетаскивание узлов
    - Масштабирование колесиком мыши
    - Клик по узлу для просмотра информации
+<img width="1716" alt="Screenshot 2024-12-22 at 14 47 56" src="https://github.com/user-attachments/assets/fe94df9c-af45-4fa8-9167-bf4c82e8ab87" />
+
 
 ### 3. Работа с API
 
