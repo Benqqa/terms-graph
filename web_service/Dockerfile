@@ -12,6 +12,11 @@ COPY web_service/package*.json /app/web_service/
 WORKDIR /app/web_service
 RUN npm install
 
+RUN mkdir -p static/node_modules && \
+    cp -r node_modules/cytoscape static/node_modules/ && \
+    cp -r node_modules/cytoscape-cola static/node_modules/ && \
+    cp -r node_modules/webcola static/node_modules/
+
 WORKDIR /app
 
 COPY protobufs/ /app/protobufs/
