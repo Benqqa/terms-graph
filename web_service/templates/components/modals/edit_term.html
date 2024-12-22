@@ -1,0 +1,42 @@
+{% macro edit_term_modal() %}
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Редактировать термин</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editTermId">
+                    <div class="mb-3">
+                        <label for="editName" class="form-label">Название</label>
+                        <input type="text" class="form-control" id="editName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDefinition" class="form-label">Определение</label>
+                        <textarea class="form-control" id="editDefinition" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Связанные термины</label>
+                        <div id="relatedTermsContainer">
+                            <!-- Здесь будут динамически добавляться поля для связей -->
+                        </div>
+                        <button type="button" class="btn btn-outline-secondary btn-sm mt-2" onclick="addRelatedTerm()">
+                            <i class="bi bi-plus"></i> Добавить связь
+                        </button>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editSource" class="form-label">Источник</label>
+                        <input type="text" class="form-control" id="editSource">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary" onclick="saveEdit()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %} 

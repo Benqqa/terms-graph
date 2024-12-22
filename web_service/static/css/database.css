@@ -1,0 +1,22 @@
+.related-term-group {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.related-term-group:last-child {
+    border-bottom: none;
+}
+
+.badge {
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.btn-group-sm {
+    display: flex;
+    gap: 4px;
+}
+
+.table td {
+    vertical-align: middle;
+} 

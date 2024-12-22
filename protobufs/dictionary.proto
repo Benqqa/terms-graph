@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package dictionary;
+
+service DictionaryService {
+    // Получить определение термина
+    rpc GetDefinition (TermRequest) returns (DefinitionResponse) {}
+    
+    // Получить список всех терминов
+    rpc ListTerms (ListTermsRequest) returns (ListTermsResponse) {}
+    
+    // Добавить новый термин
+    rpc AddTerm (AddTermRequest) returns (AddTermResponse) {}
+    
+    // Обновить термин
+    rpc UpdateTerm (UpdateTermRequest) returns (UpdateTermResponse) {}
+    
+    // Удалить термин
+    rpc DeleteTerm (DeleteTermRequest) returns (DeleteTermResponse) {}
+}
+
+message Term {
+    int32 id = 1;
+    string name = 2;
+    string definition = 3;
+    repeated string related_terms = 4;
+    string source = 5;
+    string created_at = 6;
+    string updated_at = 7;
+    map<string, string> relations = 8;
+}
+
+message TermRequest {
+    string name = 1;
+}
+
+message DefinitionResponse {
+    Term term = 1;
+}
+
+message ListTermsRequest {
+    // Пустой запрос
+}
+
+message ListTermsResponse {
+    repeated Term terms = 1;
+}
+
+message AddTermRequest {
+    Term term = 1;
+}
+
+message AddTermResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message UpdateTermRequest {
+    int32 id = 1;
+    Term term = 2;
+}
+
+message UpdateTermResponse {
+    bool success = 1;
+    string message = 2;
+    Term term = 3;
+}
+
+message DeleteTermRequest {
+    int32 id = 1;
+}
+
+message DeleteTermResponse {
+    bool success = 1;
+    string message = 2;
+} 

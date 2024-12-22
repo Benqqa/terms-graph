@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  dictionary:
+    build:
+      context: .
+      dockerfile: dictionary_service/Dockerfile
+    ports:
+      - "50051:50051"
+    networks:
+      - dictionary_network
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "50051"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: web_service/Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - DICTIONARY_HOST=dictionary
+      - DICTIONARY_PORT=50051
+    depends_on:
+      dictionary:
+        condition: service_healthy
+    networks:
+      - dictionary_network
+
+networks:
+  dictionary_network:
+    driver: bridge 

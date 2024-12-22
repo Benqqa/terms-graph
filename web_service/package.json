@@ -1,0 +1,9 @@
+{
+    "name": "dictionary-web",
+    "version": "1.0.0",
+    "dependencies": {
+        "cytoscape": "^3.28.1",
+        "cytoscape-cola": "^2.5.1",
+        "webcola": "^3.4.0"
+    }
+} 

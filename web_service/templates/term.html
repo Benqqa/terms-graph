@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">{{ term.name }}</h2>
+        <p class="card-text">{{ term.definition }}</p>
+        
+        {% if term.source %}
+        <p class="card-text"><small class="text-muted">Источник: {{ term.source }}</small></p>
+        {% endif %}
+        
+        {% if term.related_terms %}
+        <h5>Связанные термины:</h5>
+        <ul>
+            {% for related in term.related_terms %}
+            <li><a href="/term/{{ related|urlencode }}">{{ related }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <p class="card-text">
+            <small class="text-muted">
+                Создан: {{ term.created_at }}<br>
+                Обновлен: {{ term.updated_at }}
+            </small>
+        </p>
+        
+        <button class="btn btn-danger" onclick="deleteTerm('{{ term.id }}')">Удалить</button>
+    </div>
+</div>
+
+<script>
+function deleteTerm(termId) {
+    if (confirm('Вы уверены, что хотите удалить этот термин?')) {
+        fetch(`/api/terms/${termId}`, {
+            method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = '/';
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Произошла ошибка при удалении термина');
+        });
+    }
+}
+</script>
+{% endblock %} 

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-4">Термин не найден</h2>
+                    <p class="card-text">
+                        Термин "{{ term_name }}" не найден в словаре. Возможно, он был удален или еще не добавлен.
+                    </p>
+                    <div class="mt-4">
+                        <a href="/" class="btn btn-primary me-2">На главную</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

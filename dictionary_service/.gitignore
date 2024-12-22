@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+
+# Сгенерированные protobuf файлы
+*_pb2.py
+*_pb2_grpc.py
+
+# База данных
+*.db
+*.sqlite3
+
+# Логи
+*.log
+
+# Временные файлы
+.tmp/
+.temp/ 

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% from "components/modals/add_term.html" import add_term_modal %}
+{% from "components/modals/edit_term.html" import edit_term_modal %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/database.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Словарь терминов</h2>
+    
+    <div class="mb-4">
+        <button class="btn btn-primary" onclick="showAddTermModal()">
+            <i class="bi bi-plus-lg"></i> Добавить термин
+        </button>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Определение</th>
+                    <th>Связанные термины</th>
+                    <th>Источник</th>
+                    <th>Создан</th>
+                    <th>Обновлен</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for term in terms %}
+                <tr>
+                    <td>{{ term.id }}</td>
+                    <td>
+                        <a href="/term/{{ term.name|urlencode }}">{{ term.name }}</a>
+                    </td>
+                    <td>{{ term.definition[:100] }}{% if term.definition|length > 100 %}...{% endif %}</td>
+                    <td>
+                        <small>
+                            {% for related in term.related_terms %}
+                            <span class="badge bg-secondary" 
+                                  data-relation-type="{{ term.relations[related] }}">
+                                {{ related }}
+                                {% if term.relations[related] %}
+                                <small>({{ term.relations[related] }})</small>
+                                {% endif %}
+                            </span>
+                            {% endfor %}
+                        </small>
+                    </td>
+                    <td><small>{{ term.source }}</small></td>
+                    <td><small>{{ term.created_at }}</small></td>
+                    <td><small>{{ term.updated_at }}</small></td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-outline-primary" onclick="editTerm('{{ term.id }}')">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-outline-danger" onclick="deleteTerm('{{ term.id }}')">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {{ add_term_modal() }}
+    {{ edit_term_modal() }}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/database.js"></script>
+{% endblock %} 

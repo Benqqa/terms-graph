@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% from "components/term_info.html" import term_info %}
+{% from "components/legend.html" import legend %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/mindmap.css">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+            <div id="mindmap"></div>
+        </div>
+        <div class="col-md-3">
+            {{ term_info() }}
+            {{ legend() }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/node_modules/cytoscape/dist/cytoscape.min.js"></script>
+<script src="/static/node_modules/webcola/WebCola/cola.min.js"></script>
+<script src="/static/node_modules/cytoscape-cola/cytoscape-cola.js"></script>
+<script src="/static/js/mindmap.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const terms = {{ terms|tojson|safe }};
+    initMindmap(terms);
+});
+</script>
+{% endblock %} 

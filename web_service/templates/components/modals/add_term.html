@@ -1,0 +1,41 @@
+{% macro add_term_modal() %}
+<div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Добавить термин</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addForm">
+                    <div class="mb-3">
+                        <label for="addName" class="form-label">Название</label>
+                        <input type="text" class="form-control" id="addName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="addDefinition" class="form-label">Определение</label>
+                        <textarea class="form-control" id="addDefinition" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Связанные термины</label>
+                        <div id="addRelatedTermsContainer">
+                            <!-- Здесь будут динамически добавляться поля для связей -->
+                        </div>
+                        <button type="button" class="btn btn-outline-secondary btn-sm mt-2" onclick="addRelatedTermToNew()">
+                            <i class="bi bi-plus"></i> Добавить связь
+                        </button>
+                    </div>
+                    <div class="mb-3">
+                        <label for="addSource" class="form-label">Источник</label>
+                        <input type="text" class="form-control" id="addSource">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary" onclick="saveNewTerm()">Создать</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %} 
